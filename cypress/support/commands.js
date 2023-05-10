@@ -23,3 +23,19 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('addNote', (token, title, description, category) => {
+    cy.request({
+        method: "POST",
+        url: "https://practice.expandtesting.com/notes/api/notes",
+        failOnStatusCode: false,
+        headers: {
+          "x-auth-token":
+            token,
+        },
+        body: {
+          title: title,
+          description: description,
+          category: category,
+        },
+      });
+})
