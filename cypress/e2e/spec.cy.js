@@ -3,10 +3,10 @@ import { faker } from "@faker-js/faker";
 const name = faker.internet.userName();
 const email = faker.internet.email();
 const password = faker.internet.password();
-let token
+let token;
 
 describe("Testing swagger API", () => {
-  it("test sign up / registration", () => {
+  it("test sign up / registration and status", () => {
     cy.request({
       method: "POST",
       url: "https://practice.expandtesting.com/notes/api/users/register",
@@ -23,7 +23,7 @@ describe("Testing swagger API", () => {
     });
   });
 
-  it("test sign in / login", () => {
+  it("test sign in / login and status", () => {
     cy.request({
       method: "POST",
       url: "https://practice.expandtesting.com/notes/api/users/login",
@@ -36,6 +36,9 @@ describe("Testing swagger API", () => {
       },
     }).then((response) => {
       expect(response.status).to.eq(200);
+      token = response.body.data.token;
+      return token;
+
     });
   });
 })
