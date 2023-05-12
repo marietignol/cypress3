@@ -39,3 +39,5 @@ Cypress.Commands.add('addNote', (token, title, description, category) => {
         },
       });
 })
+import 'cypress-file-upload'
+require('cypress-downloadfile/lib/downloadFileCommand')
